@@ -31,6 +31,9 @@
         <activity
             android:name=".signup_activity"
             android:label="@string/title_activity_signup_activity"></activity>
-    </application>
+    <activity
+        android:name=".Tutorials"
+        android:label="Tutorial"></activity>
 
+</application>
 </manifest>
