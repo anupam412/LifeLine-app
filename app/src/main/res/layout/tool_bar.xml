@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#FFF800"
+android:padding="5dp"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <ImageButton
+        android:background="@drawable/menu_o"
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+        android:id="@+id/menu_button"
+
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="LIFELINE"
+        android:textSize="30dp"
+        android:layout_toRightOf="@id/menu_button"
+        android:layout_gravity="center"
+        android:layout_marginLeft="80dp"
+
+        android:textColor="#310D06"
+        />
+    </LinearLayout>
+</RelativeLayout>
+
+
+    <!--
+<android.support.v7.widget.Toolbar
+android:id="@+id/toolbar"
+android:layout_width="match_parent"
+android:layout_height="?attr/actionBarSize"
+
+android:background="#ffa"
+app:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+    >
+</android.support.v7.widget.Toolbar>
+ -->
