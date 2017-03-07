@@ -5,20 +5,15 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.internal.NavigationMenuView;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import org.w3c.dom.Text;
 
 /**
  * Created by Anupam on 03-02-2017.
@@ -85,6 +80,14 @@ public class MainScreen extends Activity implements View.OnClickListener, Naviga
                 //e.toString();
             }
         }
-        return false;
+
+        else if (item.getTitle().toString().compareTo("Tutorials")==0){
+            Intent i = new Intent(MainScreen.this,Tutorials.class);
+            startActivity(i);
+        }
+
+            return false;
     }
+
+
 }

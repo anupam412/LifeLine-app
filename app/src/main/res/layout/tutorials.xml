@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content" android:layout_height="fill_parent">
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.anupam.lifeline.Tutorials">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/card_view_one"
+            android:layout_margin="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            card_view:cardCornerRadius="2dp"
+            card_view:cardUseCompatPadding="true"
+            card_view:cardBackgroundColor="#ffffff"
+            card_view:cardElevation="4dp"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="0dp"
+            android:onClick="method_button_click">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/text_bleeding_heading"
+                    style="@style/Text"
+                    android:layout_alignParentTop="true"
+                    android:layout_margin="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginStart="8dp"
+                    android:text="IN CASE OF EXCESSIVE BLEEDING"
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:id="@+id/text_bleeding_first"
+                    style="@style/Text"
+                    android:layout_below="@id/text_bleeding_heading"
+                    android:layout_margin="8dp"
+                    android:textSize="16dp"
+                    android:text="1. Apply presure to the wound"
+                    android:textColor="@android:color/darker_gray" />
+
+                <TextView
+                    style="@style/Text"
+                    android:layout_below="@id/text_bleeding_first"
+                    android:layout_marginLeft="8dp"
+                    android:textSize="16dp"
+                    android:text="2. Elevate the wound. "
+                    android:layout_marginBottom="8dp"
+                    android:textColor="@android:color/darker_gray" />
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+        <!-- first card done -->
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/card_view_two"
+            android:layout_margin="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            card_view:cardCornerRadius="2dp"
+            card_view:cardUseCompatPadding="true"
+            card_view:cardBackgroundColor="#ffffff"
+            card_view:cardElevation="4dp"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="0dp"
+            android:onClick="method_button_click_two">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/text_poisoning"
+                    style="@style/Text"
+                    android:layout_alignParentTop="true"
+                    android:layout_margin="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginStart="8dp"
+                    android:text="IN CASE OF FOOD POISONING"
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:id="@+id/text_poisoning_first"
+                    style="@style/Text"
+                    android:layout_below="@id/text_poisoning"
+                    android:layout_margin="8dp"
+                    android:textSize="16dp"
+                    android:text="1. Eat bland food"
+                    android:textColor="@android:color/darker_gray" />
+
+                <TextView
+                    style="@style/Text"
+                    android:layout_below="@id/text_poisoning_first"
+                    android:layout_marginLeft="8dp"
+                    android:textSize="16dp"
+                    android:text="2. Avoid Dehydration. Drink lots of water "
+                    android:layout_marginBottom="8dp"
+                    android:textColor="@android:color/darker_gray" />
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+        <!-- second card done -->
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/card_view_three"
+            android:layout_margin="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            card_view:cardCornerRadius="2dp"
+            card_view:cardUseCompatPadding="true"
+            card_view:cardBackgroundColor="#ffffff"
+            card_view:cardElevation="4dp"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="0dp"
+            android:onClick="method_button_click_three">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/text_insect_bite"
+                    style="@style/Text"
+                    android:layout_alignParentTop="true"
+                    android:layout_margin="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginStart="8dp"
+                    android:text="IN CASE OF INSECT BITE"
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:id="@+id/text_insect_bite_first"
+                    style="@style/Text"
+                    android:layout_below="@id/text_insect_bite"
+                    android:layout_margin="8dp"
+                    android:textSize="16dp"
+                    android:text="1. Remove the stinger"
+                    android:textColor="@android:color/darker_gray" />
+
+                <TextView
+                    style="@style/Text"
+                    android:layout_below="@id/text_insect_bite_first"
+                    android:layout_marginLeft="8dp"
+                    android:textSize="16dp"
+                    android:text="2. Wash the area with soap. Apply benadryl "
+                    android:layout_marginBottom="8dp"
+                    android:textColor="@android:color/darker_gray" />
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+        <!-- third card done -->
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/card_view_four"
+            android:layout_margin="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            card_view:cardCornerRadius="2dp"
+            card_view:cardUseCompatPadding="true"
+            card_view:cardBackgroundColor="#ffffff"
+            card_view:cardElevation="4dp"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="0dp"
+            android:onClick="method_button_click_four">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/text_choking"
+                    style="@style/Text"
+                    android:layout_alignParentTop="true"
+                    android:layout_margin="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginStart="8dp"
+                    android:text="IN CASE OF CHOKING"
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:id="@+id/text_choking_first"
+                    style="@style/Text"
+                    android:layout_below="@id/text_choking"
+                    android:layout_margin="8dp"
+                    android:textSize="16dp"
+                    android:text="1. Perform Back thrusts"
+                    android:textColor="@android:color/darker_gray" />
+
+                <TextView
+                    style="@style/Text"
+                    android:layout_below="@id/text_choking_first"
+                    android:layout_marginLeft="8dp"
+                    android:textSize="16dp"
+                    android:text="2. Admister abdominal thrusts. "
+                    android:layout_marginBottom="8dp"
+                    android:textColor="@android:color/darker_gray" />
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+        <!-- fourth card done -->
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/card_view_five"
+            android:layout_margin="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            card_view:cardCornerRadius="2dp"
+            card_view:cardUseCompatPadding="true"
+            card_view:cardBackgroundColor="#ffffff"
+            card_view:cardElevation="4dp"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="0dp"
+            android:onClick="method_button_click_five">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/text_nosebleed"
+                    style="@style/Text"
+                    android:layout_alignParentTop="true"
+                    android:layout_margin="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginStart="8dp"
+                    android:text="IN CASE OF NOSEBLEED"
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:id="@+id/text_nosebleed_first"
+                    style="@style/Text"
+                    android:layout_below="@id/text_nosebleed"
+                    android:layout_margin="8dp"
+                    android:textSize="16dp"
+                    android:text="1. Tilt head forward to drain blood from nose"
+                    android:textColor="@android:color/darker_gray" />
+
+                <TextView
+                    style="@style/Text"
+                    android:layout_below="@id/text_nosebleed_first"
+                    android:layout_marginLeft="8dp"
+                    android:textSize="16dp"
+                    android:text="2. Compress the nose "
+                    android:layout_marginBottom="8dp"
+                    android:textColor="@android:color/darker_gray" />
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+        <!-- fifth card done -->
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/card_view_six"
+            android:layout_margin="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            card_view:cardCornerRadius="2dp"
+            card_view:cardUseCompatPadding="true"
+            card_view:cardBackgroundColor="#ffffff"
+            card_view:cardElevation="4dp"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="0dp"
+            android:onClick="method_button_click_six">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/text_heatstroke"
+                    style="@style/Text"
+                    android:layout_alignParentTop="true"
+                    android:layout_margin="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginStart="8dp"
+                    android:text="IN CASE OF HEATSTROKE"
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:id="@+id/text_heatstroke_first"
+                    style="@style/Text"
+                    android:layout_below="@id/text_heatstroke"
+                    android:layout_margin="8dp"
+                    android:textSize="16dp"
+                    android:text="1. Place the victim in a cool place"
+                    android:textColor="@android:color/darker_gray" />
+
+                <TextView
+                    style="@style/Text"
+                    android:layout_below="@id/text_heatstroke_first"
+                    android:layout_marginLeft="8dp"
+                    android:textSize="16dp"
+                    android:text="2. Place icepacks over the victim and spray the victim with water "
+                    android:layout_marginBottom="8dp"
+                    android:textColor="@android:color/darker_gray" />
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+        <!-- sixth card done -->
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/card_view_seven"
+            android:layout_margin="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            card_view:cardCornerRadius="2dp"
+            card_view:cardUseCompatPadding="true"
+            card_view:cardBackgroundColor="#ffffff"
+            card_view:cardElevation="4dp"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="0dp"
+            android:onClick="method_button_click_seven">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/text_burns"
+                    style="@style/Text"
+                    android:layout_alignParentTop="true"
+                    android:layout_margin="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginStart="8dp"
+                    android:text="IN CASE OF BURNS"
+                    android:textColor="@android:color/black" />
+
+                <TextView
+                    android:id="@+id/text_burns_first"
+                    style="@style/Text"
+                    android:layout_below="@id/text_burns"
+                    android:layout_margin="8dp"
+                    android:textSize="16dp"
+                    android:text="1. Determine the degree of burn"
+                    android:textColor="@android:color/darker_gray" />
+
+                <TextView
+                    style="@style/Text"
+                    android:layout_below="@id/text_burns_first"
+                    android:layout_marginLeft="8dp"
+                    android:textSize="16dp"
+                    android:text="2. Treat accordingly "
+                    android:layout_marginBottom="8dp"
+                    android:textColor="@android:color/darker_gray" />
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+        <!-- seventh card done -->
+
+
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>
+    </ScrollView>
