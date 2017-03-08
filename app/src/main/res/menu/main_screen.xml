@@ -4,6 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.anupam.lifeline.MainScreen"
     >
+    <item android:id="@+id/Home"
+        android:title="Home"
+        android:icon="@drawable/ic_account_circle_black_24dp"
+        >
+    </item>
 
     <item android:id="@+id/My_profile"
         android:title="My Profile"
@@ -32,11 +37,7 @@
         android:icon="@drawable/ic_library_books_black_24dp"
         >
     </item>
-    <item android:id="@+id/Logout"
-        android:title="Logout"
-        android:icon="@drawable/ic_exit_to_app_black_24dp"
-        >
-    </item>
+
 
     <item android:id="@+id/share"
         android:title="Share"
@@ -46,6 +47,12 @@
     <item android:id="@+id/help"
         android:title="Help and Support"
         android:icon="@drawable/ic_info_black_24dp"
+        >
+    </item>
+
+    <item android:id="@+id/Logout"
+        android:title="Logout"
+        android:icon="@drawable/ic_exit_to_app_black_24dp"
         >
     </item>
 

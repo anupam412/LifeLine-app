@@ -17,9 +17,12 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.anupam.lifeline.fragment.Home;
 import com.example.anupam.lifeline.fragment.help_fragment1;
 import com.example.anupam.lifeline.fragment.profile_fragment;
 import com.example.anupam.lifeline.fragment.tutorial_fragment;
+
+import static com.example.anupam.lifeline.R.id.container;
 
 /**
  * Created by Anupam on 03-02-2017.
@@ -52,6 +55,10 @@ public class MainScreen extends FragmentActivity implements View.OnClickListener
 
         b.setOnClickListener(this);
         dList.setNavigationItemSelectedListener(this);
+        getSupportFragmentManager().beginTransaction().replace(container,new Home()).commit();
+
+
+
     }
 
     @Override
@@ -89,7 +96,7 @@ public class MainScreen extends FragmentActivity implements View.OnClickListener
         }
 
         else if (item.getTitle().toString().compareTo("Tutorials")==0){
-            getSupportFragmentManager().beginTransaction().replace(R.id.container,new tutorial_fragment()).commit();
+            getSupportFragmentManager().beginTransaction().replace(container,new tutorial_fragment()).commit();
             dL.closeDrawers();
 
         }
@@ -97,13 +104,20 @@ public class MainScreen extends FragmentActivity implements View.OnClickListener
         {
 
             dL.closeDrawers();
-            getSupportFragmentManager().beginTransaction().replace(R.id.container,new profile_fragment()).commit();
+            getSupportFragmentManager().beginTransaction().replace(container,new profile_fragment()).commit();
         }
         else if(item.getTitle().toString().compareTo("Help and Support")==0)
         {
 
             dL.closeDrawers();
-            getSupportFragmentManager().beginTransaction().replace(R.id.container,new help_fragment1()).commit();
+            getSupportFragmentManager().beginTransaction().replace(container,new help_fragment1()).commit();
+        }
+
+        else if(item.getTitle().toString().compareTo("Home")==0)
+        {
+
+            dL.closeDrawers();
+            getSupportFragmentManager().beginTransaction().replace(container,new Home()).commit();
         }
 
         return false;
