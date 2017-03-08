@@ -1,10 +1,7 @@
 package com.example.anupam.lifeline;
 import android.app.Activity;
 import android.app.DatePickerDialog;
-import android.app.Dialog;
-import android.app.DialogFragment;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -12,7 +9,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -31,13 +27,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.text.DateFormat;
-import java.text.FieldPosition;
-import java.text.ParseException;
-import java.text.ParsePosition;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
 public class signup_activity extends Activity implements View.OnClickListener {
 
@@ -118,7 +108,7 @@ public class signup_activity extends Activity implements View.OnClickListener {
                     Log.d("asa","first");
 
                     ss = new HttpAsyncTask2(this,usernameS,firstNameS,lastNameS,dateofbirthS,genderS,emailS,contactnoS);
-                    ss.execute("http://172.16.28.214/lifeline/register.php");
+                    ss.execute("http://172.16.178.74/lifeline/register.php");
                     // Thread.sleep(2000);
                     Log.d("asa","first");
                 }catch (Exception jse){

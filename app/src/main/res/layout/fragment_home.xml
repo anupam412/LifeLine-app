@@ -21,20 +21,53 @@
             android:id="@+id/first_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="In Case of Emergency Press:"
+            android:text="SAVE ME"
             android:textColor="#ff0000"
             android:textStyle="italic"
             android:textSize="24sp"
             />
 
         <ImageView
-            android:layout_margin="8dp"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@id/first_text"
-            android:layout_width="300dp"
-            android:layout_height="300dp"
-            android:src="@drawable/first_aid"
+        android:layout_margin="8dp"
+            android:id="@+id/save_button"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/first_text"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/first_aid"
+        />
+
+        <ImageView
+            android:layout_marginTop="80dp"
+            android:layout_marginLeft="10dp"
+        android:id= "@+id/tab1"
+            android:layout_below="@id/save_button"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/medi"
+        />
+        <ImageView
+            android:layout_marginTop="80dp"
+
+            android:id= "@+id/tab2"
+            android:layout_toRightOf="@id/tab1"
+            android:layout_below="@id/save_button"
+            android:layout_marginLeft="30dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/blo"
             />
+        <ImageView
+            android:layout_marginTop="80dp"
+            android:layout_below="@id/save_button"
+            android:layout_marginLeft="30dp"
+            android:layout_toRightOf="@id/tab2"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/fam"
+            />
+
+
 
     </RelativeLayout>
 
