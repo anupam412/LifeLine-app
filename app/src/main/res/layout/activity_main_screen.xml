@@ -6,40 +6,28 @@
 
     android:id="@+id/menu_drawer"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <RelativeLayout
+
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+    <include
+        android:id="@+id/tool_bar"
+        layout="@layout/tool_bar"
+        >
+    </include>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:id="@+id/container"
+            android:layout_height="match_parent"
 
-        <include
-            android:id="@+id/tool_bar"
-            layout="@layout/tool_bar">
-        </include>
+            android:orientation="vertical">
 
+        </LinearLayout>
 
-
-        <TextView
-            android:layout_centerHorizontal="true"
-            android:layout_margin="16dp"
-            android:layout_below="@id/tool_bar"
-            android:id="@+id/first_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="In Case of Emergency Press:"
-            android:textColor="#ff0000"
-            android:textStyle="italic"
-            android:textSize="24sp"
-            />
-
-        <ImageView
-            android:layout_margin="8dp"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@id/first_text"
-            android:layout_width="300dp"
-            android:layout_height="300dp"
-            android:src="@drawable/first_aid"
-            />
-
-    </RelativeLayout>
+    </LinearLayout>
 
     <android.support.design.widget.NavigationView
         android:layout_width="wrap_content"
