@@ -1,11 +1,13 @@
 package com.example.anupam.lifeline;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.DrawerLayout;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,10 +17,13 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.anupam.lifeline.fragment.profile_fragment;
+import com.example.anupam.lifeline.fragment.tutorial_fragment;
+
 /**
  * Created by Anupam on 03-02-2017.
  */
-public class MainScreen extends Activity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
+public class MainScreen extends FragmentActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
     DrawerLayout dL;
     NavigationView dList;
     ImageButton b;
@@ -53,6 +58,7 @@ public class MainScreen extends Activity implements View.OnClickListener, Naviga
         dL.openDrawer(dList);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         if(item.getTitle().toString().compareTo("Logout")==0){
@@ -82,8 +88,15 @@ public class MainScreen extends Activity implements View.OnClickListener, Naviga
         }
 
         else if (item.getTitle().toString().compareTo("Tutorials")==0){
-            Intent i = new Intent(MainScreen.this,Tutorials.class);
-            startActivity(i);
+            getSupportFragmentManager().beginTransaction().replace(R.id.container,new tutorial_fragment()).commit();
+            dL.closeDrawers();
+
+        }
+        else if(item.getTitle().toString().compareTo("My Profile")==0)
+        {
+
+            dL.closeDrawers();
+            getSupportFragmentManager().beginTransaction().replace(R.id.container,new profile_fragment()).commit();
         }
 
             return false;
