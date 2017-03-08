@@ -27,14 +27,14 @@
             android:textSize="24sp"
             />
 
-        <ImageView
+        <ImageButton
         android:layout_margin="8dp"
             android:id="@+id/save_button"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/first_text"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:src="@drawable/first_aid"
+        android:background="@drawable/first_aid"
         />
 
         <ImageView
