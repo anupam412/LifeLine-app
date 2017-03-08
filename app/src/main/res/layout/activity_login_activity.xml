@@ -4,6 +4,7 @@
     android:id="@+id/activity_login_activity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/holo_red_dark"
     tools:context="com.example.anupam.lifeline.Login_activity">
     <TextView
         android:layout_width="match_parent"
@@ -71,31 +72,34 @@
             />
     </LinearLayout>
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:id="@+id/login_button"
         android:layout_below="@id/ll"
+        android:background="@android:color/holo_red_light"
         android:text="Login"
         android:layout_centerHorizontal="true"
         />
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:id="@+id/forgotpassword_button"
-        android:layout_below="@id/login_button"
+        android:background="@android:color/holo_red_light"
         android:text="Forgot Password"
-        android:layout_centerHorizontal="true"
-        />
+        android:layout_below="@+id/login_button"
+        android:layout_alignRight="@+id/login_button"
+        android:layout_alignEnd="@+id/login_button" />
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:id="@+id/signUP_button"
-        android:layout_alignParentBottom="true"
+        android:background="@android:color/holo_red_light"
         android:text="Sign Up"
-        android:layout_centerHorizontal="true"
-        />
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
