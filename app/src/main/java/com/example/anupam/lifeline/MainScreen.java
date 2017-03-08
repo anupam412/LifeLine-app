@@ -17,6 +17,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.anupam.lifeline.fragment.help_fragment1;
 import com.example.anupam.lifeline.fragment.profile_fragment;
 import com.example.anupam.lifeline.fragment.tutorial_fragment;
 
@@ -98,8 +99,14 @@ public class MainScreen extends FragmentActivity implements View.OnClickListener
             dL.closeDrawers();
             getSupportFragmentManager().beginTransaction().replace(R.id.container,new profile_fragment()).commit();
         }
+        else if(item.getTitle().toString().compareTo("Help and Support")==0)
+        {
 
-            return false;
+            dL.closeDrawers();
+            getSupportFragmentManager().beginTransaction().replace(R.id.container,new help_fragment1()).commit();
+        }
+
+        return false;
     }
 
 
