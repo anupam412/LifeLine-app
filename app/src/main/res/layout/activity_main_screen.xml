@@ -15,6 +15,8 @@
             layout="@layout/tool_bar">
         </include>
 
+
+
         <TextView
             android:layout_centerHorizontal="true"
             android:layout_margin="16dp"
@@ -47,6 +49,7 @@
         android:id="@+id/nav_view"
         app:headerLayout="@layout/nav_header"
         >
+
 
 
     </android.support.design.widget.NavigationView>
