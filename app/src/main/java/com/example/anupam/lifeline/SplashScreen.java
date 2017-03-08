@@ -3,9 +3,8 @@ package com.example.anupam.lifeline;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -53,7 +52,7 @@ public class SplashScreen extends Activity {
                     finish();
                 }
             }
-        }, 1);
+        }, 4000);
 
     }
 }
