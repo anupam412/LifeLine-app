@@ -17,8 +17,7 @@
         />
      <item
         android:id="@+id/nearby_donor"
-        android:title="Donor Nearby"
-         android:icon="@drawable/drop"
+        android:title="Donor Nearby" android:icon="@drawable/drop"
          >
     </item>
     <item android:id="@+id/First_Responder"

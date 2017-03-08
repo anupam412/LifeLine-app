@@ -43,12 +43,14 @@ public class Login_activity extends Activity implements View.OnClickListener {
 
         login  = (Button)findViewById(R.id.login_button);
         signup = (Button)findViewById(R.id.signUP_button);
+        forgot_password = (Button)findViewById(R.id.forgotpassword_button);
 
         username = (EditText)findViewById(R.id.editText3);
         password = (EditText)findViewById(R.id.editText4);
 
         login.setOnClickListener(this);
         signup.setOnClickListener(this);
+        forgot_password.setOnClickListener(this);
 
         rememberMe = (CheckBox)findViewById(R.id.checkbox1);
     }
@@ -66,6 +68,11 @@ public class Login_activity extends Activity implements View.OnClickListener {
             Intent i = new Intent(Login_activity.this,signup_activity.class);
             startActivity(i);
 
+        }
+        else if(v.getId() == R.id.forgotpassword_button){
+            Log.d("anupam","ohhhyeaahhh");
+            Intent i = new Intent(Login_activity.this,MapsActivity.class);
+            startActivity(i);
         }
     }
 
