@@ -38,6 +38,7 @@ public class signup_activity extends Activity implements View.OnClickListener {
     RadioGroup gender;
     EditText email;
     EditText contactno;
+    EditText password;
 
     Button submit;
 
@@ -48,6 +49,7 @@ public class signup_activity extends Activity implements View.OnClickListener {
     String genderS="other";
     String emailS;
     String contactnoS;
+    String passwordS;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +60,7 @@ public class signup_activity extends Activity implements View.OnClickListener {
         lastname = (EditText)findViewById(R.id.last_name);
         email = (EditText)findViewById(R.id.email);
         contactno = (EditText)findViewById(R.id.contact_no);
+        password = (EditText)findViewById(R.id.password);
 
         choosedate = (Button)findViewById(R.id.date2);
 
@@ -100,6 +103,7 @@ public class signup_activity extends Activity implements View.OnClickListener {
                 lastNameS = lastname.getText().toString();
                 emailS = email.getText().toString();
                 contactnoS = contactno.getText().toString();
+                passwordS = password.getText().toString();
 
                 JSONObject jsonObject = new JSONObject();
                 HttpAsyncTask2 ss = null;
@@ -107,7 +111,7 @@ public class signup_activity extends Activity implements View.OnClickListener {
                 try {
                     Log.d("asa","first");
 
-                    ss = new HttpAsyncTask2(this,usernameS,firstNameS,lastNameS,dateofbirthS,genderS,emailS,contactnoS);
+                    ss = new HttpAsyncTask2(this,usernameS,firstNameS,lastNameS,dateofbirthS,genderS,emailS,contactnoS,passwordS);
                     ss.execute("http://172.16.178.74/lifeline/register.php");
                     // Thread.sleep(2000);
                     Log.d("asa","first");
@@ -150,11 +154,12 @@ class HttpAsyncTask2 extends AsyncTask<String, Void, String> {
     String gender;
     String email;
     String contactno;
+    String password;
 
     String result="";
     signup_activity context;
 
-    public HttpAsyncTask2(signup_activity context,String username, String firstname,String lastname,String dateofbirth,String gender,String email,String contactno) {
+    public HttpAsyncTask2(signup_activity context,String username, String firstname,String lastname,String dateofbirth,String gender,String email,String contactno,String password) {
         this.username = username;
         this.firstname = firstname;
         this.context = context;
@@ -163,6 +168,7 @@ class HttpAsyncTask2 extends AsyncTask<String, Void, String> {
         this.gender = gender;
         this.email  = email;
         this.contactno = contactno;
+        this.password = password;
     }
     ProgressDialog PD;
 
@@ -193,7 +199,7 @@ class HttpAsyncTask2 extends AsyncTask<String, Void, String> {
             jsonObject.accumulate("gender", gender);
             jsonObject.accumulate("email", email);
             jsonObject.accumulate("contactno", contactno);
-            jsonObject.accumulate("password", "fuckoff");
+            jsonObject.accumulate("password", password);
 
 
 

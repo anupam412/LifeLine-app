@@ -27,7 +27,6 @@
         android:background="@android:color/holo_red_dark"
         android:id="@+id/white_line"
         />
-
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -124,14 +123,26 @@
         android:hint="Contact Number"
         android:gravity="center"
         />
-
-    <Button
-        android:id="@+id/submit_button_final"
+    <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/contact_no"
 
         android:layout_marginTop="10dp"
+        android:id="@+id/password"
+        android:inputType="textPassword"
+        android:hint="password"
+        android:gravity="center"
+        />
+
+    <Button
+        android:id="@+id/submit_button_final"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/password"
+
+        android:layout_marginTop="10dp"
         android:background="@android:color/holo_red_light"
         android:text="Submit" />
+
 </RelativeLayout>
