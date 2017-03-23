@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -53,6 +55,10 @@ public class signup_activity extends Activity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         setContentView(R.layout.activity_signup_activity);
 
         username = (EditText)findViewById(R.id.user_name);
@@ -82,8 +88,8 @@ public class signup_activity extends Activity implements View.OnClickListener {
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
                 DatePickerDialog dpd = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener(){
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                            choosedate.setText(dayOfMonth+" /"+month + " /"+year);
-                            dateofbirthS = ""+year+""+month+""+dayOfMonth;
+                            choosedate.setText(dayOfMonth+" /"+(month+1) + " /"+year);
+                            dateofbirthS = ""+year+""+(month+1)+""+dayOfMonth;
                     }
                 }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH));
                 dpd.show();
