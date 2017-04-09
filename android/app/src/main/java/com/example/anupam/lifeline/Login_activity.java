@@ -97,7 +97,7 @@ public class Login_activity extends Activity implements View.OnClickListener {
         try {
             Log.d("asa","first");
             ss = new HttpAsyncTask1(username.getText().toString(),password.getText().toString(),this,rememberMe.isChecked());
-            ss.execute("http://172.16.178.74/lifeline/login.php");
+            ss.execute("http://172.16.29.253/lifeline/login.php");
            // Thread.sleep(2000);
             Log.d("asa","first");
         }catch (Exception jse){

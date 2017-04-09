@@ -118,7 +118,7 @@ public class signup_activity extends Activity implements View.OnClickListener {
                     Log.d("asa","first");
 
                     ss = new HttpAsyncTask2(this,usernameS,firstNameS,lastNameS,dateofbirthS,genderS,emailS,contactnoS,passwordS);
-                    ss.execute("http://172.16.178.74/lifeline/register.php");
+                    ss.execute("http://172.16.29.253/lifeline/register.php");
                     // Thread.sleep(2000);
                     Log.d("asa","first");
                 }catch (Exception jse){
