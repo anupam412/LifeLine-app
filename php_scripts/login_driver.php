@@ -29,13 +29,6 @@ if(! $retval->num_rows )
 }
 else
 {
-
-
     echo "success";
-
-
-  }
-
-
-
-   ?>
+}
+?>
