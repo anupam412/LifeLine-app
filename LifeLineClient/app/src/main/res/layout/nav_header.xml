@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/logo400x200"
+    android:layout_width="match_parent"
+    android:layout_height="200dp">
+
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/nav_header_textz"
+    android:text="Welcome Chirag Wadhera"
+    android:textSize="15dp"
+    android:layout_alignParentBottom="true"
+    android:layout_centerHorizontal="true"
+    android:textColor="#fff"
+    />
+</RelativeLayout>

@@ -1,0 +1,59 @@
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/real_menu"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.anupam.lifelineClientSide.MainScreen"
+    >
+    <item android:id="@+id/Home"
+        android:title="Home"
+        android:icon="@drawable/ic_account_circle_black_24dp"
+        >
+    </item>
+
+    <item android:id="@+id/My_profile"
+        android:title="My Profile"
+        android:icon="@drawable/ic_account_circle_black_24dp"
+        >
+    </item>
+    <item
+        android:id="@+id/raise_an_emergency"
+        android:title="Raise an Emergency"
+        android:icon="@drawable/alarm"
+        />
+     <item
+        android:id="@+id/nearby_donor"
+        android:title="Donor Nearby"
+         android:icon="@drawable/drop"
+         >
+    </item>
+    <item android:id="@+id/First_Responder"
+        android:title="First Responder"
+        android:icon="@drawable/icon"
+        >
+    </item>
+
+    <item android:id="@+id/Tutorials"
+        android:title="Tutorials"
+        android:icon="@drawable/ic_library_books_black_24dp"
+        >
+    </item>
+
+
+    <item android:id="@+id/share"
+        android:title="Share"
+        android:icon="@drawable/ic_share_black_24dp"
+        >
+    </item>
+    <item android:id="@+id/help"
+        android:title="Help and Support"
+        android:icon="@drawable/ic_info_black_24dp"
+        >
+    </item>
+
+    <item android:id="@+id/Logout"
+        android:title="Logout"
+        android:icon="@drawable/ic_exit_to_app_black_24dp"
+        >
+    </item>
+
+</menu>
