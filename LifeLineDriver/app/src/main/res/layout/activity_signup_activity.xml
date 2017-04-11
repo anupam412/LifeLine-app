@@ -1,0 +1,150 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:background="@android:color/holo_red_dark"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.anupam.lifelineDriver.signup_activity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/signUP_heading"
+        android:text="SIGN UP"
+        android:textStyle="bold"
+        android:textSize="25dp"
+        android:gravity="center" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/signUP_heading"
+        android:background="@android:color/holo_red_dark"
+        android:id="@+id/white_line"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Username"
+        android:id="@+id/user_name"
+        android:layout_below="@id/white_line"
+        android:gravity="center"
+        android:layout_marginTop="10dp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="First Name"
+        android:id="@+id/first_name"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/user_name" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Last Name"
+        android:layout_marginTop="10dp"
+        android:id="@+id/last_name"
+        android:gravity="center"
+        android:layout_below="@id/first_name"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/date2"
+        android:layout_marginTop="10dp"
+        android:background="#ffffff"
+        android:layout_below="@id/last_name"
+        android:text="Date of Birth"
+        android:textColor="@android:color/holo_red_dark"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="100"
+        android:layout_marginTop="10dp"
+        android:id="@+id/gender_layout"
+        android:layout_below="@id/date2"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Gender"
+            android:textSize="25dp"
+            android:layout_weight="75"
+            />
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_weight="25"
+            android:paddingLeft="15dp"
+            android:id="@+id/genderz"
+            >
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MALE"
+                />
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="FEMALE"
+                />
+        </RadioGroup>
+    </LinearLayout>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/gender_layout"
+        android:hint="Email"
+        android:id="@+id/email"
+        android:gravity="center"
+        android:inputType="textEmailAddress"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/email"
+
+        android:layout_marginTop="10dp"
+        android:id="@+id/contact_no"
+        android:inputType="number"
+        android:hint="Contact Number"
+        android:gravity="center"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/contact_no"
+
+        android:layout_marginTop="10dp"
+        android:id="@+id/password"
+        android:inputType="textPassword"
+        android:hint="password"
+        android:gravity="center"
+        />
+
+    <Button
+        android:id="@+id/submit_button_final"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/password"
+
+        android:layout_marginTop="10dp"
+        android:background="@android:color/holo_red_light"
+        android:text="Submit" />
+
+</RelativeLayout>
