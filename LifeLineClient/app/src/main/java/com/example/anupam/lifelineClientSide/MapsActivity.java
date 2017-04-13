@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
@@ -14,27 +15,44 @@ import android.os.Bundle;
 import android.text.LoginFilter;
 import android.util.Log;
 
+import com.directions.route.AbstractRouting;
+import com.directions.route.Route;
+import com.directions.route.RouteException;
+import com.directions.route.Routing;
+import com.directions.route.RoutingListener;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
 
+import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.ExecutionException;
+
+import static com.example.anupam.lifelineClientSide.R.id.map;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMyLocationChangeListener {
 
@@ -43,6 +61,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     LatLng myPosition;
     String userId = "";
     Timer myTimer;
+    Location location;
     public static String[] myBadGlobalArray = new String[2];
 
 
@@ -52,33 +71,47 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         setContentView(R.layout.activity_maps);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
+                .findFragmentById(map);
         mapFragment.getMapAsync(this);
         SharedPreferences settings = getSharedPreferences("userInfo", MODE_PRIVATE);
 
         userId = settings.getString("username","");
 
-        final long period = 1000;
+        final long period = 5000;
         myTimer = new Timer();
         myTimer.schedule(new TimerTask() {
             @Override
             public void run() {
-
                 try {
                     Log.d("anupam","requesting for coord");
 
                     runOnUiThread(new Runnable() {
                         public void run() {
                             try {
+
+                                JSONObject jsonObject1 = new JSONObject();
+                                HttpAsyncTask3 ss = null;
+
+                                try {
+                                    Log.d("anupam","sending data");
+                                    ss = new HttpAsyncTask3(MapsActivity.this,userId,String.valueOf(location.getLatitude()),String.valueOf(location.getLongitude()));
+                                    ss.execute("http://"+getString(R.string.InternetProtocol)+"/lifeline/set_user_cord.php");
+                                    // Thread.sleep(2000);
+                                    Log.d("asa","--");
+                                }catch (Exception jse){
+                                    Log.d("anupam",jse.getMessage()+jse.toString());
+                                }
+
                                 JSONObject jsonObject = new JSONObject();
                                 HttpAsyncTask4 st = null;
 
-                                st = new HttpAsyncTask4(MapsActivity.this,mMap);
+                                st = new HttpAsyncTask4(MapsActivity.this,mMap,location);
                                 st.execute("http://" + getString(R.string.InternetProtocol) + "/lifeline/receive_driver_cord_for_user.php");
                             }
                             catch (Exception e){
                                 Log.d("anupam",e.getMessage());
                             }
+
                         }
                     });
 
@@ -128,7 +161,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         String provider = locationManager.getBestProvider(criteria, true);
 
         // Getting Current Location
-        Location location = locationManager.getLastKnownLocation(provider);
+        location = locationManager.getLastKnownLocation(provider);
 
         if (location != null) {
             // Getting latitude of the current location
@@ -159,26 +192,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMyLocationChange(Location location) {
 
-        mMap.clear();
-        mMap.addMarker(new MarkerOptions().position(new LatLng(location.getLatitude(), location.getLongitude()))
-                .title("My Location"));
+        this.location = location;
 
-            /* ..and Animate camera to center on that location !
-             * (the reason for we created this custom Location Source !) */
-        mMap.animateCamera(CameraUpdateFactory.newLatLng(new LatLng(location.getLatitude(), location.getLongitude())));
-
-        JSONObject jsonObject = new JSONObject();
-        HttpAsyncTask3 ss = null;
-
-        try {
-            Log.d("anupam","sending data");
-            ss = new HttpAsyncTask3(this,userId,String.valueOf(location.getLatitude()),String.valueOf(location.getLongitude()));
-            ss.execute("http://"+getString(R.string.InternetProtocol)+"/lifeline/set_user_cord.php");
-            // Thread.sleep(2000);
-            Log.d("asa","--");
-        }catch (Exception jse){
-            Log.d("anupam",jse.getMessage()+jse.toString());
-        }
 
     }
 
@@ -188,14 +203,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         myTimer.cancel();
     }
 }
-
-class HttpAsyncTask4 extends AsyncTask<String, Void, String> {
+class HttpAsyncTask4 extends AsyncTask<String, Void, String> implements RoutingListener {
     String result="";
     MapsActivity context;
     GoogleMap mMap;
-    public HttpAsyncTask4(MapsActivity context, GoogleMap mMap) {
+    Location location;
+    private List<Polyline> polylines;
+    public HttpAsyncTask4(MapsActivity context, GoogleMap mMap, Location location) {
         this.context = context;
         this.mMap = mMap;
+        this.location = location;
     }
     public String getResult(){
         return this.result;
@@ -207,11 +224,11 @@ class HttpAsyncTask4 extends AsyncTask<String, Void, String> {
 
         super.onPreExecute();
         PD = new ProgressDialog(this.context);
-        PD.setTitle("Please Wait..");
+        PD.setTitle("Refreshing...");
         PD.setMessage("Loading...");
         PD.setCancelable(false);
         PD.show();
-        PD.dismiss();
+        //PD.dismiss();
     }
     @Override
     protected String doInBackground(String... urls) {
@@ -261,16 +278,94 @@ class HttpAsyncTask4 extends AsyncTask<String, Void, String> {
     }
     @Override
     protected void onPostExecute(String result) {
-        //  PD.dismiss();
+          PD.dismiss();
         Log.d("result","must be here");
         Log.d("anupam",result);
         String[] words = result.split("/");
-        double latitude = Double.parseDouble(words[0]);
-        double longitude = Double.parseDouble(words[1]);
+        double latitudeDriver = Double.parseDouble(words[0]);
+        double longitudeDriver = Double.parseDouble(words[1]);
 
-        LatLng myPosition = new LatLng(latitude, longitude);
+        LatLng myPosition = new LatLng(latitudeDriver, longitudeDriver);
+        mMap.clear();
 
         mMap.addMarker(new MarkerOptions().position(myPosition).title("DriverCord"));
+
+        mMap.addMarker(new MarkerOptions().position(new LatLng(location.getLatitude(), location.getLongitude()))
+                .title("My Location"));
+
+            /* ..and Animate camera to center on that location !
+             * (the reason for we created this custom Location Source !) */
+        mMap.animateCamera(CameraUpdateFactory.newLatLng(new LatLng(location.getLatitude(), location.getLongitude())));
+
+        try{
+        LatLng start = new LatLng(location.getLatitude(),location.getLongitude());
+        LatLng end = new LatLng(latitudeDriver,longitudeDriver);
+
+            Routing routing = new Routing.Builder()
+                    .travelMode(AbstractRouting.TravelMode.WALKING)
+                    .withListener(this)
+                    .alternativeRoutes(false)
+                    .waypoints(start, end)
+                    .build();
+            routing.execute();
+        }
+        catch (Exception e){
+            Log.d("anupam",e.getMessage());
+        }
+
+        // routing.
+
+       // double latitudeClient = location.getLatitude();
+      //  double longitudeClient = location.getLongitude();
+        /*
+        PolylineOptions polylineOptions = new PolylineOptions();
+        polylineOptions
+                .add(new LatLng(latitudeDriver, longitudeDriver))
+                .add(new LatLng(latitudeClient,longitudeClient));
+        mMap.addPolyline(polylineOptions);
+        */
+
+
+    }
+
+    @Override
+    public void onRoutingFailure(RouteException e) {
+
+    }
+
+    @Override
+    public void onRoutingStart() {
+
+    }
+
+    @Override
+    public void onRoutingSuccess(ArrayList<Route> route, int shortestRouteIndex) {
+        if(polylines!=null){
+        if(polylines.size()>0) {
+            for (Polyline poly : polylines) {
+                poly.remove();
+            }
+        }
+        }
+
+        polylines = new ArrayList<>();
+        //add route(s) to the map.
+        for (int j = 0; j <route.size(); j++) {
+
+            //In case of more than 5 alternative routes
+
+            PolylineOptions polyOptions = new PolylineOptions();
+            polyOptions.width(10 + j * 3);
+            polyOptions.color(Color.BLUE);
+            polyOptions.addAll(route.get(j).getPoints());
+            Polyline polyline = mMap.addPolyline(polyOptions);
+            polylines.add(polyline);
+
+        }
+    }
+
+    @Override
+    public void onRoutingCancelled() {
 
     }
 }
