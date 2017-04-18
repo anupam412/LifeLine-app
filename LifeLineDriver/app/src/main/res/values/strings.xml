@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">LifelineD</string>
     <string name="title_activity_main_screen">MainScreen</string>
-    <string name="InternetProtocol">192.168.43.248</string>
+    <string name="InternetProtocol">172.16.182.29</string>
 
     <string name="title_section1">Section 1</string>
     <string name="title_section2">Section 2</string>
