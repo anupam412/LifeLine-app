@@ -26,8 +26,8 @@ public class Home extends Fragment implements View.OnClickListener {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_home, container, false);
 
-        ImageButton emergency = (ImageButton)v.findViewById(R.id.save_button);
-        emergency.setOnClickListener(this);
+        //ImageButton emergency = (ImageButton)v.findViewById(R.id.save_button);
+        //emergency.setOnClickListener(this);
 
         return v;
     }
@@ -38,3 +38,4 @@ public class Home extends Fragment implements View.OnClickListener {
         startActivity(i);
     }
 }
+

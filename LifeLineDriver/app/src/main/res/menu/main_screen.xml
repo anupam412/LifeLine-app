@@ -15,22 +15,9 @@
         android:icon="@drawable/ic_account_circle_black_24dp"
         >
     </item>
-    <item
-        android:id="@+id/raise_an_emergency"
-        android:title="Raise an Emergency"
-        android:icon="@drawable/alarm"
-        />
-     <item
-        android:id="@+id/nearby_donor"
-        android:title="Donor Nearby"
-         android:icon="@drawable/drop"
-         >
-    </item>
-    <item android:id="@+id/First_Responder"
-        android:title="First Responder"
-        android:icon="@drawable/icon"
-        >
-    </item>
+
+
+
 
     <item android:id="@+id/Tutorials"
         android:title="Tutorials"
