@@ -7,7 +7,7 @@ $person=json_decode($json);
 $username = $person->{'username'};
 $password = $person->{'password'};
 }*/
-$username='rag';   
+$username='rag';
 //$password='test';
 $servername='localhost';
 $usernam='root';

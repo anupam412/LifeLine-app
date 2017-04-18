@@ -18,11 +18,11 @@ $passwor='1234';
 $conn = mysqli_connect($servername, $usernam, $passwor,'lifeline');
 // Check connection
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    die("Connection failed:  ".$conn->connect_error);
 }
 $sql1="UPDATE userlist SET latitude=$latitude WHERE username LIKE '$username'";
 $sql2="UPDATE userlist SET longitude=$longitude WHERE username LIKE '$username'";
-mysqli_select_db($conn,'driverlist');
+mysqli_select_db($conn,'lifeline');
 
 mysqli_query($conn, $sql1);
 mysqli_query($conn, $sql2);
