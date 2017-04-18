@@ -115,9 +115,12 @@ public class MainScreen extends FragmentActivity implements View.OnClickListener
 
         else if(item.getTitle().toString().compareTo("Home")==0)
         {
-
             dL.closeDrawers();
             getSupportFragmentManager().beginTransaction().replace(container,new Home()).commit();
+        }
+        else if(item.getTitle().toString().compareTo("Raise an Emergency")==0){
+            Intent i = new Intent(MainScreen.this,DriverFindingSendingNotifications.class);
+            startActivity(i);
         }
 
         return false;

@@ -74,6 +74,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         userId = settings.getString("username","");
 
+        if (location == null){
+            Log.d("anupam","location is null");
+            location = new Location("");
+            location.setLatitude(25.5341557d);
+            location.setLongitude(84.8518324d);
+        }
+
         final long period = 5000;
         myTimer = new Timer();
         myTimer.schedule(new TimerTask() {
@@ -81,6 +88,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             public void run() {
                 try {
                     Log.d("anupam","requesting for coord");
+                    Log.d("anupam"," --------------- "+ location.getLatitude()+" ////  "+ location.getLongitude());
 
                     runOnUiThread(new Runnable() {
                         public void run() {
@@ -90,7 +98,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 HttpAsyncTask3 ss = null;
 
                                 try {
-                                    Log.d("anupam","sending data");
+
                                     ss = new HttpAsyncTask3(MapsActivity.this,userId,String.valueOf(location.getLatitude()),String.valueOf(location.getLongitude()));
                                     ss.execute("http://"+getString(R.string.InternetProtocol)+"/lifeline/set_driver_cord.php");
                                     // Thread.sleep(2000);

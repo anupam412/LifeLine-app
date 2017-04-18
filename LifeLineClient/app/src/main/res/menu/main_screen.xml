@@ -20,17 +20,19 @@
         android:title="Raise an Emergency"
         android:icon="@drawable/alarm"
         />
-     <item
+   <!--  <item
         android:id="@+id/nearby_donor"
         android:title="Donor Nearby"
          android:icon="@drawable/drop"
          >
+
     </item>
     <item android:id="@+id/First_Responder"
         android:title="First Responder"
         android:icon="@drawable/icon"
         >
     </item>
+    -->
 
     <item android:id="@+id/Tutorials"
         android:title="Tutorials"

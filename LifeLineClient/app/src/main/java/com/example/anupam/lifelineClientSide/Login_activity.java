@@ -214,14 +214,12 @@ class HttpAsyncTask1 extends AsyncTask<String, Void, String> {
        // Login_activity la = new Login_activity();
         Log.d("anu",result+""+result.equals("success")+" "+result.length());
         if(result.charAt(0) == 's'){
-            Log.d("fuck","if");
+
 
             this.context.startNewActivity(context,this.username,this.password,this.checkedStatus);
-            Log.d("fuck","offfff");
 
         }
         else{
-           Log.d("fuck","else ");
 
             this.context.wrongDATA(context);
         }

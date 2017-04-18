@@ -53,7 +53,9 @@
             android:paddingTop="16dp"
             android:text="john johny"
             android:textColor="#000000"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:id="@+id/my_name"
+            />
 
     </LinearLayout>
 
@@ -89,7 +91,9 @@
             android:paddingTop="16dp"
             android:text="20yrs"
             android:textColor="#000000"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:id="@+id/my_age"
+            />
 
     </LinearLayout>
 
@@ -125,7 +129,9 @@
             android:paddingTop="16dp"
             android:text="O+"
             android:textColor="#000000"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:id="@+id/my_bloodgroup"
+            />
 
     </LinearLayout>
 
@@ -161,7 +167,9 @@
             android:paddingTop="16dp"
             android:text="Male"
             android:textColor="#000000"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:id="@+id/my_gender"
+            />
 
     </LinearLayout>
     <TextView
@@ -196,7 +204,9 @@
             android:paddingTop="16dp"
             android:text="9798687323"
             android:textColor="#000000"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:id="@+id/my_number"
+            />
     </LinearLayout>
 
     <TextView
@@ -232,7 +242,9 @@
             android:paddingTop="16dp"
             android:text="Yes"
             android:textColor="#000000"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:id="@+id/my_willingness"
+            />
 
     </LinearLayout>
 
@@ -268,7 +280,9 @@
             android:paddingTop="16dp"
             android:text="john@gmail.com"
             android:textColor="#000000"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:id="@+id/my_email"
+            />
     </LinearLayout>
 
 
@@ -305,7 +319,9 @@
             android:paddingTop="16dp"
             android:text="5 People"
             android:textColor="#000000"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:id="@+id/my_friend_network"
+            />
 
     </LinearLayout>
 
