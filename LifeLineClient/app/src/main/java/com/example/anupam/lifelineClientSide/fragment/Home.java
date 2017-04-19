@@ -8,11 +8,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.anupam.lifelineClientSide.DriverFindingSendingNotifications;
 
 import com.example.anupam.lifelineClientSide.R;
+import com.skyfishjy.library.RippleBackground;
 
 import org.json.JSONObject;
 import org.w3c.dom.Text;
@@ -30,9 +32,11 @@ public class Home extends Fragment implements View.OnClickListener {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_home, container, false);
 
-        ImageButton emergency = (ImageButton)v.findViewById(R.id.save_button);
+        ImageView emergency = (ImageView)v.findViewById(R.id.save_button);
         emergency.setOnClickListener(this);
 
+        final RippleBackground rippleBackground=(RippleBackground)v.findViewById(R.id.content);
+        rippleBackground.startRippleAnimation();
 
         return v;
     }

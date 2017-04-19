@@ -22,6 +22,8 @@ import com.example.anupam.lifelineDriver.fragment.help_fragment1;
 import com.example.anupam.lifelineDriver.fragment.profile_fragment;
 import com.example.anupam.lifelineDriver.fragment.tutorial_fragment;
 
+import org.w3c.dom.Text;
+
 import static com.example.anupam.lifelineDriver.R.id.container;
 
 /**

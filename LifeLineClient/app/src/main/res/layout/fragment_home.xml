@@ -21,46 +21,86 @@
             android:id="@+id/first_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="SAVE ME"
+            android:text="In case of emergency, press the button below"
             android:textColor="#ff0000"
-            android:textStyle="italic"
-            android:textSize="24sp"
-            />
+            android:textSize="15sp"
 
-        <ImageButton
-        android:layout_margin="8dp"
+
+            />
+        <com.skyfishjy.library.RippleBackground
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/first_text"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:id="@+id/content"
+            app:rb_color="#E76060"
+            app:rb_radius="15dp"
+            app:rb_rippleAmount="4"
+            app:rb_duration="4000"
+            app:rb_scale="6"
+            android:layout_margin="8dp"
+            app:rb_type="fillRipple"
+            >
+        <ImageView
+        android:layout_margin="46dp"
             android:id="@+id/save_button"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/first_text"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+            android:layout_marginTop="5dp"
+
+            android:layout_width="70dp"
+        android:layout_height="70dp"
         android:background="@drawable/first_aid"
         />
-
+        </com.skyfishjy.library.RippleBackground>
         <ImageView
             android:layout_marginTop="80dp"
             android:layout_marginLeft="10dp"
         android:id= "@+id/tab1"
-            android:layout_below="@id/save_button"
+            android:layout_below="@id/content"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:src="@drawable/medi"
         />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Medical Reports"
+            android:textColor="#000000"
+            android:textSize="13dp"
+            android:layout_marginLeft="5dp"
+            android:layout_below="@+id/tab1"
+            android:layout_marginTop="5dp"
+            />
         <ImageView
             android:layout_marginTop="80dp"
 
             android:id= "@+id/tab2"
             android:layout_toRightOf="@id/tab1"
-            android:layout_below="@id/save_button"
-            android:layout_marginLeft="30dp"
+            android:layout_below="@id/content"
+            android:layout_marginLeft="18dp"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:src="@drawable/blo"
             />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Blood Donors"
+            android:textColor="#000000"
+            android:textSize="13dp"
+            android:layout_below="@+id/tab2"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            />
         <ImageView
             android:layout_marginTop="80dp"
-            android:layout_below="@id/save_button"
-            android:layout_marginLeft="30dp"
+            android:layout_below="@id/content"
+            android:id="@+id/tab3"
+            android:layout_marginLeft="22dp"
             android:layout_toRightOf="@id/tab2"
             android:layout_width="100dp"
             android:layout_height="100dp"
@@ -68,6 +108,19 @@
             />
 
 
+        <TextView
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:text="Friends and Family Network"
+            android:textColor="#000000"
+            android:textSize="13dp"
+            android:layout_below="@+id/tab2"
+            android:layout_marginRight="5dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            />
 
     </RelativeLayout>
 
