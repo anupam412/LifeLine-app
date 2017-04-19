@@ -15,15 +15,18 @@
 
         <TextView
             android:id="@+id/first_text"
-            android:layout_width="wrap_content"
+            android:layout_width="200dp"
+            android:gravity="center"
             android:layout_height="wrap_content"
             android:layout_below="@id/tool_bar"
             android:layout_marginLeft="46dp"
             android:layout_marginTop="66dp"
             android:text="AVAILABLE"
-            android:textColor="#ff0000"
+            android:textColor="#ffffff"
             android:textSize="30sp"
-            android:textStyle="italic" />
+            android:background="#ff0000"
+
+            />
 
         <Switch
             android:id="@+id/switch1"
@@ -31,8 +34,56 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/tool_bar"
             android:layout_toRightOf="@id/first_text"
-            android:layout_marginLeft="106dp"
-            android:layout_marginTop="74dp"/>
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="74dp"
+            android:checked="true"
+
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:text="You've been connected to ...."
+            android:id="@+id/t1"
+            android:layout_centerInParent="true"
+            android:visibility="invisible"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:text="Name          : Mr.XYZ"
+            android:id="@+id/t2"
+            android:layout_below="@id/t1"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:visibility="invisible"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:text="Contact Number : 8979480729"
+            android:id="@+id/t3"
+            android:layout_below="@id/t2"
+            android:visibility="invisible"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MAPS"
+            android:id="@+id/map_button"
+            android:layout_below="@id/t3"
+            android:visibility="invisible"
+            android:layout_marginTop="25dp"
+            android:layout_centerHorizontal="true"
+
+            />
+
+
         <ImageView
             android:layout_width="150dp"
             android:layout_height="150dp"
@@ -41,7 +92,6 @@
             android:background="@drawable/heart"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-
             />
         <TextView
             android:layout_width="match_parent"

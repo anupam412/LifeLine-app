@@ -87,12 +87,25 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void run() {
                 try {
+                    //mMap.animateCamera( CameraUpdateFactory.zoomTo( 16.2f ) );
+
                     Log.d("anupam","requesting for coord");
                     Log.d("anupam"," --------------- "+ location.getLatitude()+" ////  "+ location.getLongitude());
 
                     runOnUiThread(new Runnable() {
                         public void run() {
                             try {
+
+                                JSONObject jsonObject = new JSONObject();
+                                HttpAsyncTask4 st = null;
+
+                                st = new HttpAsyncTask4(MapsActivity.this,mMap,location,userId);
+                                st.execute("http://" + getString(R.string.InternetProtocol) + "/lifeline/receive_user_cord_for_driver.php");
+                            }
+                            catch (Exception e){
+                                Log.d("anupam",e.getMessage());
+                            }
+
 
                                 JSONObject jsonObject1 = new JSONObject();
                                 HttpAsyncTask3 ss = null;
@@ -108,15 +121,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                     Log.d("anupam",jse.getMessage()+jse.toString());
                                 }
 
-                                JSONObject jsonObject = new JSONObject();
-                                HttpAsyncTask4 st = null;
 
-                                st = new HttpAsyncTask4(MapsActivity.this,mMap,location);
-                                st.execute("http://" + getString(R.string.InternetProtocol) + "/lifeline/receive_user_cord_for_driver.php");
-                            }
-                            catch (Exception e){
-                                Log.d("anupam",e.getMessage());
-                            }
 
                         }
                     });
@@ -215,10 +220,12 @@ class HttpAsyncTask4 extends AsyncTask<String, Void, String> implements RoutingL
     GoogleMap mMap;
     Location location;
     private List<Polyline> polylines;
-    public HttpAsyncTask4(MapsActivity context, GoogleMap mMap, Location location) {
+    String userID;
+    public HttpAsyncTask4(MapsActivity context, GoogleMap mMap, Location location, String userId) {
         this.context = context;
         this.mMap = mMap;
         this.location = location;
+        this.userID = userId;
     }
     public String getResult(){
         return this.result;
@@ -229,12 +236,8 @@ class HttpAsyncTask4 extends AsyncTask<String, Void, String> implements RoutingL
     protected void onPreExecute() {
 
         super.onPreExecute();
-        PD = new ProgressDialog(this.context);
-        PD.setTitle("Refreshing...");
-        PD.setMessage("Loading...");
-        PD.setCancelable(false);
-        PD.show();
-        //PD.dismiss();
+        Log.d("anupam","sending req to asshish");
+
     }
     @Override
     protected String doInBackground(String... urls) {
@@ -246,7 +249,7 @@ class HttpAsyncTask4 extends AsyncTask<String, Void, String> implements RoutingL
             String json = "";
             JSONObject jsonObject = new JSONObject();
 
-            //        jsonObject.accumulate("username", username);
+            jsonObject.accumulate("username", userID);
             //      jsonObject.accumulate("password", password);
 
             json = jsonObject.toString();
@@ -284,9 +287,7 @@ class HttpAsyncTask4 extends AsyncTask<String, Void, String> implements RoutingL
     }
     @Override
     protected void onPostExecute(String result) {
-        PD.dismiss();
-        Log.d("result","must be here");
-        Log.d("anupam",result);
+        Log.d("anupam","Result of important Script"+result);
         String[] words = result.split("/");
         double latitudeDriver = Double.parseDouble(words[0]);
         double longitudeDriver = Double.parseDouble(words[1]);

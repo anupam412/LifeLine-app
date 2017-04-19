@@ -105,7 +105,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 JSONObject jsonObject = new JSONObject();
                                 HttpAsyncTask4 st = null;
 
-                                st = new HttpAsyncTask4(MapsActivity.this,mMap,location);
+                                st = new HttpAsyncTask4(MapsActivity.this,mMap,location,userId);
                                 st.execute("http://" + getString(R.string.InternetProtocol) + "/lifeline/receive_driver_cord_for_user.php");
                             }
                             catch (Exception e){
@@ -207,12 +207,14 @@ class HttpAsyncTask4 extends AsyncTask<String, Void, String> implements RoutingL
     String result="";
     MapsActivity context;
     GoogleMap mMap;
+    String userId;
     Location location;
     private List<Polyline> polylines;
-    public HttpAsyncTask4(MapsActivity context, GoogleMap mMap, Location location) {
+    public HttpAsyncTask4(MapsActivity context, GoogleMap mMap, Location location, String userid) {
         this.context = context;
         this.mMap = mMap;
         this.location = location;
+        this.userId = userid;
     }
     public String getResult(){
         return this.result;
@@ -240,7 +242,7 @@ class HttpAsyncTask4 extends AsyncTask<String, Void, String> implements RoutingL
             String json = "";
             JSONObject jsonObject = new JSONObject();
 
-            //        jsonObject.accumulate("username", username);
+                    jsonObject.accumulate("username", userId);
             //      jsonObject.accumulate("password", password);
 
             json = jsonObject.toString();

@@ -149,8 +149,6 @@ class HttpAsyncTask6 extends AsyncTask<String, Void, String> {
         this.context = context;
         this.userId = userId;
     }
-    ProgressDialog PD;
-
     @Override
     protected void onPreExecute() {
 

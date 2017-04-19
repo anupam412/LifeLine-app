@@ -9,6 +9,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.IInterface;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,11 +17,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.anupam.lifelineDriver.MainScreen;
 import com.example.anupam.lifelineDriver.MapsActivity;
@@ -43,11 +46,17 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 
-public class Home extends Fragment implements CompoundButton.OnCheckedChangeListener {
+public class Home extends Fragment implements CompoundButton.OnCheckedChangeListener, View.OnClickListener {
     Timer myTimer;
     String userId;
     Activity activity;
+    ImageView heartImageView;
+    TextView bt;
+    Animation anim;
+    TextView t1,t2,t3;
+    Button map_button;
     public Home() {
+
         this.activity = getActivity();
         // Required empty public constructor
     }
@@ -59,14 +68,19 @@ public class Home extends Fragment implements CompoundButton.OnCheckedChangeList
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_home, container, false);
 
-        Switch sw =(Switch)v.findViewById(R.id.switch1);
+        final Switch sw =(Switch)v.findViewById(R.id.switch1);
         sw.setOnCheckedChangeListener(this);
+
+        t1 = (TextView)v.findViewById(R.id.t1);
+        t2 = (TextView)v.findViewById(R.id.t2);
+        t3 = (TextView)v.findViewById(R.id.t3);
+        map_button = (Button)v.findViewById(R.id.map_button);
 
         SharedPreferences settings = this.getActivity().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
 
-         userId = settings.getString("username","");
+        userId = settings.getString("username","");
 
-        ImageView imageView2 = (ImageView) v.findViewById(R.id.image2);
+        heartImageView = (ImageView) v.findViewById(R.id.image2);
         WaveDrawable chromeWave = new WaveDrawable(getContext(),R.drawable.heart);
         chromeWave.setWaveAmplitude(70);
         chromeWave.setWaveSpeed(50);
@@ -74,18 +88,20 @@ public class Home extends Fragment implements CompoundButton.OnCheckedChangeList
 
         chromeWave.setIndeterminate(true);
 
+        final Button map_button = (Button)v.findViewById(R.id.map_button);
+        map_button.setOnClickListener(this);
 
-        imageView2.setImageDrawable(chromeWave);
+        heartImageView.setImageDrawable(chromeWave);
 
-        TextView bt = (TextView)v.findViewById(R.id.blinking_text);
-        Animation anim = new AlphaAnimation(0.0f, 1.0f);
+        bt = (TextView)v.findViewById(R.id.blinking_text);
+        anim = new AlphaAnimation(0.0f, 1.0f);
         anim.setDuration(600); //You can manage the blinking time with this parameter
         anim.setStartOffset(20);
         anim.setRepeatMode(Animation.REVERSE);
         anim.setRepeatCount(Animation.INFINITE);
         bt.startAnimation(anim);
 
-
+        final Home homes = this;
         final long period = 2000;
         myTimer = new Timer();
         myTimer.schedule(new TimerTask() {
@@ -95,9 +111,9 @@ public class Home extends Fragment implements CompoundButton.OnCheckedChangeList
                 JSONObject jsonObject1 = new JSONObject();
                 HttpAsyncTask7 ss = null;
                 try {
-                    ss = new HttpAsyncTask7(activity, userId);
+                    ss = new HttpAsyncTask7(homes,activity, userId,t1,t2,t3,map_button,heartImageView,bt,anim,sw);
                     ss.execute("http://"+getString(R.string.InternetProtocol)+"/lifeline/a.php");
-
+                    Log.d("anupam","script");
                 } catch (Exception jse) {
                     Log.d("anupam", jse.getMessage() + jse.toString());
                 }
@@ -121,12 +137,41 @@ public class Home extends Fragment implements CompoundButton.OnCheckedChangeList
             Log.d("anupam", jse.getMessage() + jse.toString());
         }
 
+        if(isChecked){
+            heartImageView.setVisibility(View.VISIBLE);
+            bt.setVisibility(View.VISIBLE);
+            bt.startAnimation(anim);
+
+        }
+        else{
+            heartImageView.setVisibility(View.INVISIBLE);
+            bt.clearAnimation();
+
+            bt.setVisibility(View.INVISIBLE);
+
+        //    if(t1.getVisibility() == View.VISIBLE) {
+         //       t1.setVisibility(View.INVISIBLE);
+         //       t2.setVisibility(View.INVISIBLE);
+        //        t3.setVisibility(View.INVISIBLE);
+         //       map_button.setVisibility(View.INVISIBLE);
+        //    }
+        }
+
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
         myTimer.cancel();
+    }
+
+    @Override
+    public void onClick(View v) {
+
+        Intent i = new Intent(getContext(),MapsActivity.class);
+        startActivity(i);
+        myTimer.cancel();
+
     }
 }
 
@@ -216,15 +261,28 @@ class HttpAsyncTask8 extends AsyncTask<String, Void, String> {
 }
 class HttpAsyncTask7 extends AsyncTask<String, Void, String> {
     String userId;
-
+    Home homes;
     String result="";
     Context context;
-
-    public HttpAsyncTask7(Context context, String userId) {
+    TextView t1,t2,t3;
+    Button map_button;
+    ImageView heartView;
+    TextView blinking_text;
+    Animation anim;
+    Switch sw;
+    public HttpAsyncTask7(Home homes, Context context, String userId, TextView t1, TextView t2, TextView t3, Button map_button, ImageView heartImageView, TextView bt, Animation anim, Switch sw) {
 
         this.context = context;
         this.userId = userId;
-
+        this.t1 = t1;
+        this.t2 = t2;
+        this.t3 = t3;
+        this.map_button = map_button;
+        this.homes = homes;
+        this.heartView = heartImageView;
+        this.blinking_text = bt;
+        this.anim = anim;
+        this.sw = sw;
     }
 
     @Override
@@ -235,7 +293,6 @@ class HttpAsyncTask7 extends AsyncTask<String, Void, String> {
     @Override
     protected String doInBackground(String... urls) {
         InputStream inputStream = null;
-//        result = "";
         try {
             HttpClient httpclient = new DefaultHttpClient();
             HttpPost httpPost = new HttpPost(urls[0]);
@@ -282,11 +339,30 @@ class HttpAsyncTask7 extends AsyncTask<String, Void, String> {
     @Override
     protected void onPostExecute(String result) {
 
-        if(result.charAt(0)=='s'){
-            //    context.registration_successful(context);
+        if(result.charAt(0)=='f' && result.charAt(1)=='a' && result.charAt(2)=='i' && result.charAt(0)=='l'){
+
         }
         else{
-            //  context.wrong(context);
+            this.sw.setChecked(false);
+
+
+
+            Toast.makeText(homes.getActivity(),"A patient needs you !!",Toast.LENGTH_SHORT);
+            t2.setText("Name      :"+" "+this.result);
+            if(t1.getVisibility() == View.INVISIBLE) {
+                t1.setVisibility(View.VISIBLE);
+                t2.setVisibility(View.VISIBLE);
+                t3.setVisibility(View.VISIBLE);
+                map_button.setVisibility(View.VISIBLE);
+
+
+            }
+
+            this.heartView.setVisibility(View.INVISIBLE);
+            this.blinking_text.clearAnimation();
+
+            this.blinking_text.setVisibility(View.INVISIBLE);
+
         }
     }
 }
