@@ -32,7 +32,7 @@ if ($conn->connect_error) {
 }
 $sql1="UPDATE driverlist SET latitude=$latitude WHERE username LIKE '$username'";
 $sql2="UPDATE driverlist SET longitude=$longitude WHERE username LIKE '$username'";
-mysqli_select_db($conn,'driverlist');
+mysqli_select_db($conn,'lifeline');
 
 mysqli_query($conn, $sql1);
 mysqli_query($conn, $sql2);
