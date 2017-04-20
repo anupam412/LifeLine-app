@@ -15,6 +15,8 @@ import android.os.Bundle;
 import android.support.v7.view.menu.MenuAdapter;
 import android.text.LoginFilter;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.directions.route.AbstractRouting;
@@ -51,7 +53,7 @@ import java.util.TimerTask;
 import static com.example.anupam.lifelineDriver.R.id.map;
 
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMyLocationChangeListener {
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnMyLocationChangeListener, View.OnClickListener {
 
     GoogleMap mMap;
     SupportMapFragment mapFragment;
@@ -73,6 +75,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SharedPreferences settings = getSharedPreferences("userInfo", MODE_PRIVATE);
 
         userId = settings.getString("username","");
+
+        Button finish_button = (Button)findViewById(R.id.finish_button);
+        finish_button.setOnClickListener(this);
 
         if (location == null){
             Log.d("anupam","location is null");
@@ -212,6 +217,116 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onDestroy() {
         super.onDestroy();
         myTimer.cancel();
+    }
+
+    @Override
+    public void onClick(View v) {
+
+        JSONObject jsonObject1 = new JSONObject();
+        HttpAsyncTask9 ss = null;
+
+        try {
+
+            ss = new HttpAsyncTask9(MapsActivity.this,userId,String.valueOf(location.getLatitude()),String.valueOf(location.getLongitude()));
+            ss.execute("http://"+getString(R.string.InternetProtocol)+"/lifeline/delete_in_active.php");
+            // Thread.sleep(2000);
+            Log.d("asa","--");
+        }
+        catch (Exception jse){
+            Log.d("anupam",jse.getMessage()+jse.toString());
+        }
+        finish();
+    }
+}
+class HttpAsyncTask9 extends AsyncTask<String, Void, String> {
+    String userId;
+    String latitude;
+    String longitude;
+
+    String result="";
+    MapsActivity context;
+
+    public HttpAsyncTask9(MapsActivity context,String userId, String lat, String lon) {
+        this.context = context;
+        this.userId = userId;
+        this.latitude = lat;
+        this.longitude = lon;
+    }
+    ProgressDialog PD;
+
+    @Override
+    protected void onPreExecute() {
+
+        super.onPreExecute();
+        PD = new ProgressDialog(this.context);
+        PD.setTitle("Please Wait..");
+        PD.setMessage("Loading...");
+        PD.setCancelable(false);
+        PD.show();
+        PD.dismiss();
+    }
+    @Override
+    protected String doInBackground(String... urls) {
+        InputStream inputStream = null;
+//        result = "";
+        try {
+            HttpClient httpclient = new DefaultHttpClient();
+            HttpPost httpPost = new HttpPost(urls[0]);
+            String json = "";
+            JSONObject jsonObject = new JSONObject();
+            Log.d("anupam",userId+" userid ");
+            Log.d("anupam",latitude+" lat");
+            Log.d("anupam",longitude+" long");
+            jsonObject.accumulate("drivername", userId);
+            jsonObject.accumulate("latitude", latitude);
+            jsonObject.accumulate("longitude", longitude);
+
+            json = jsonObject.toString();
+            StringEntity se = new StringEntity(json);
+
+            httpPost.setEntity(se);
+            httpPost.setHeader("Accept", "application/json");
+            httpPost.setHeader("Content-type", "application/json");
+
+
+            HttpResponse httpResponse = httpclient.execute(httpPost);
+
+            inputStream = httpResponse.getEntity().getContent();
+            if (inputStream != null)
+                this.result = convertInputStreamToString(inputStream);
+            else
+                this.result = "Did not work!";
+            Log.d("anupam",this.result);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return this.result;
+    }
+
+
+    private String convertInputStreamToString(InputStream inputStream) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader( new InputStreamReader(inputStream));
+        String line = "";
+        String result = "";
+        while((line = bufferedReader.readLine()) != null)
+            result += line;
+        inputStream.close();
+        return result;
+
+
+    }
+
+    @Override
+    protected void onPostExecute(String result) {
+        //PD.dismiss();
+        // Login_activity la = new Login_activity();
+
+        if(result.charAt(0)=='s'){
+            //    context.registration_successful(context);
+        }
+        else{
+            //  context.wrong(context);
+        }
     }
 }
 class HttpAsyncTask4 extends AsyncTask<String, Void, String> implements RoutingListener {

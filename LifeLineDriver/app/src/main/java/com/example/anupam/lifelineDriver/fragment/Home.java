@@ -170,6 +170,7 @@ public class Home extends Fragment implements CompoundButton.OnCheckedChangeList
 
         Intent i = new Intent(getContext(),MapsActivity.class);
         startActivity(i);
+        getActivity().finish();
         myTimer.cancel();
 
     }
@@ -339,15 +340,14 @@ class HttpAsyncTask7 extends AsyncTask<String, Void, String> {
     @Override
     protected void onPostExecute(String result) {
 
-        if(result.charAt(0)=='f' && result.charAt(1)=='a' && result.charAt(2)=='i' && result.charAt(0)=='l'){
-
+        if(result.charAt(0)=='9' ){
+                Log.d("anupam","anupam is sex");
         }
-        else{
+        else {
+
+            Log.d("anupam","anupam is "+result.charAt(0));
             this.sw.setChecked(false);
 
-
-
-            Toast.makeText(homes.getActivity(),"A patient needs you !!",Toast.LENGTH_SHORT);
             t2.setText("Name      :"+" "+this.result);
             if(t1.getVisibility() == View.INVISIBLE) {
                 t1.setVisibility(View.VISIBLE);

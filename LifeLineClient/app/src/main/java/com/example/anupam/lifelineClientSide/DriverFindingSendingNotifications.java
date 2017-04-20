@@ -94,6 +94,7 @@ CountDownTimer cdt;
                             SharedPreferences settings = getSharedPreferences("userInfo", MODE_PRIVATE);
 
                             String userId = settings.getString("username","");
+                            //userId = "a";
 
                             JSONObject jsonObject = new JSONObject();
                             HttpAsyncTask6 st = null;
@@ -169,6 +170,7 @@ class HttpAsyncTask6 extends AsyncTask<String, Void, String> {
             HttpPost httpPost = new HttpPost(urls[0]);
             String json = "";
             JSONObject jsonObject = new JSONObject();
+            Log.d("anupam","JUST BEFORE JSON ----- "+userId);
             jsonObject.accumulate("username", userId);
 
             json = jsonObject.toString();

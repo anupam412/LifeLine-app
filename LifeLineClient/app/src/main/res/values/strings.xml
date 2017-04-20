@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">LifeLineC</string>
     <string name="title_activity_main_screen">MainScreen</string>
-    <string name="InternetProtocol">172.16.181.28</string>
+    <string name="InternetProtocol">172.16.135.26</string>
     <string name="title_section1">Section 1</string>
     <string name="title_section2">Section 2</string>
     <string name="title_section3">Section 3</string>
